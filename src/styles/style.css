@@ -1,0 +1,432 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.header {
+  display: flex; /* Assuming you want a flex layout */
+  align-items: center; /* Center items vertically */
+  justify-content: space-between; /* Space between elements */
+  padding: 10px; /* Add some padding */
+  background-color: white; /* Ensure the header has a background color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light bottom shadow */
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Align items with space between */
+  padding: 10px; /* Add some padding */
+}
+
+.header-container-search {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Allow the search bar to grow */
+  margin-left: 10px; /* Space between dropdown and search bar */
+}
+
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+}
+
+.search-bar {
+  padding: 10px 10px 10px 40px;
+  border-radius: 5px; /* Match the rounded corners */
+  border: 1px solid #ccc; /* Light border */
+  width: 100%; /* Full width */
+  min-width: 120px; /* Minimum width to prevent it from getting too small */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  margin-right: 10px;
+}
+
+.btn-jual {
+  width: 120px;
+  height: 40px;
+  background-color: #004aad;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d3d3d3;
+}
+
+.header-container-search {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown-button {
+  background-color: white; /* White background */
+  border: 1px solid #ccc; /* Light border to match the search bar */
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: white; /* White background */
+  min-width: 160px;
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light border to match the search bar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Show the dropdown on hover */
+}
+
+.dropdown-content a {
+  color: black; /* Text color */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0; /* Soft grey color on hover */
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background-color: white; /* White background */
+  border: 1px solid #ccc; /* Light border to match the search bar */
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.dropdown-button:hover {
+  background-color: #f9f9f9; /* Slightly darker white on hover */
+}
+
+.dropdown-content {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: white; /* White background */
+  min-width: 160px;
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc; /* Light border to match the search bar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow */
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Show the dropdown on hover */
+}
+
+.dropdown-content a {
+  color: black; /* Text color */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s; /* Smooth transition for hover */
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0; /* Soft grey color on hover */
+}
+
+.body-container {
+  padding: 20px;
+  max-width: 1200px; /* Limit the width of the container */
+  margin: 0 auto; /* Center the container */
+}
+
+.title {
+  text-align: center; /* Center the title */
+  margin-bottom: 20px; /* Space below the title */
+  font-size: 24px; /* Font size for the title */
+}
+
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  display: flex; /* Flex layout for card */
+  flex-direction: column;
+  margin-bottom: 20px; /* Space below the card */
+  max-width: 200px;
+}
+
+.card-image {
+  width: 200px; /* Fixed width for image */
+  height: 200px; /* Fixed height for image */
+  object-fit: cover; /* Cover the area without distortion */
+}
+
+.card-content {
+  padding: 10px; /* Padding inside the card */
+  display: flex; /* Flex layout for content */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: center; /* Center content */
+}
+
+.card-title {
+  font-size: 18px; /* Font size for the title */
+  margin: 0 0 10px; /* Space below the title */
+}
+
+.card-price {
+  font-size: 16px; /* Font size for the price */
+  color: green; /* Price color */
+  margin: 0 0 5px; /* Space below the price */
+}
+
+.card-location {
+  font-size: 14px; /* Font size for the location */
+  color: #555; /* Gray color for location */
+}
+
+.header-search {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.header-buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.detail-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.detail-content-title {
+  width: 70%;
+  padding: 20px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  display: flex; /* Flex layout for card */
+  flex-direction: column;
+  margin-bottom: 20px; /* Space below the card */
+  align-items: start;
+  justify-content: center;
+  gap: 10px;
+}
+
+.detail-content-title p {
+  margin: 0;
+}
+
+.detail-content-title h1 {
+  margin: 0;
+}
+.detail-content-price {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  display: flex; /* Flex layout for card */
+  flex-direction: column;
+  margin-bottom: 20px; /* Space below the card */
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-content-price button {
+  width: 100%;
+}
+
+.detail-description-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.detail-description {
+  width: 70%;
+  padding: 20px;
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  display: flex; /* Flex layout for card */
+  flex-direction: column;
+  margin-bottom: 20px; /* Space below the card */
+}
+
+.detail-toko {
+  width: 30%;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Arrange children in a row */
+  gap: 20px; /* Space between items */
+  justify-content: center; /* Center items horizontally */
+  padding: 20px; /* Padding around the content */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  align-items: center; /* Center items vertically */
+  max-height: 100px;
+}
+
+.detail-toko h2 {
+  margin: 0;
+}
+
+.detail-toko img {
+  margin: 0;
+}
+.detail-toko img {
+  width: 50px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height to make it square */
+  border-radius: 50%; /* Make the image circular */
+  object-fit: cover; /* Ensure the image covers the area without distortion */
+  border: 2px solid black;
+}
+
+@media (max-width: 425px) {
+  .header {
+    flex-direction: column; /* Stack header items vertically */
+    align-items: flex-start; /* Align items to the start */
+  }
+
+  .header-search {
+    gap: 10px;
+  }
+
+  .header-container {
+    width: 100%; /* Full width */
+    padding: 0px; /* Adjust padding */
+    justify-content: center;
+  }
+
+  .search-bar {
+    width: 100%; /* Full width for search bar */
+    margin: 10px 0; /* Add margin for spacing */
+  }
+
+  .btn-jual {
+    width: 100%; /* Full width for buttons */
+    margin: 5px 0; /* Add margin for spacing */
+  }
+
+  .dropdown {
+    width: 20%; /* Full width for dropdown */
+    margin: 10px 0; /* Add margin for spacing */
+  }
+
+  .dropdown-button {
+    width: 100%; /* Full width for dropdown button */
+  }
+
+  .card-container {
+    flex-direction: row; /* Stack cards vertically */
+    width: 100%; /* Full width for card container */
+  }
+
+  .card {
+    max-width: 165px;
+  }
+
+  .title {
+    font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .header-container-btn-jual {
+    width: 100%;
+  }
+
+  .header-container-search {
+    width: 100%;
+    margin: 0 0; /* Add margin for spacing */
+  }
+
+  .header-buttons {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .detail-content-wrapper {
+    flex-direction: column;
+  }
+
+  .detail-content-title {
+    width: 100%;
+  }
+
+  .detail-content-price {
+    width: 100%;
+  }
+
+  .detail-description-wrapper {
+    flex-direction: column;
+  }
+
+  .detail-description {
+    width: 100%;
+  }
+
+  .detail-toko {
+    width: 100%;
+  }
+}
