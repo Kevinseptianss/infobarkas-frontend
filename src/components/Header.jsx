@@ -31,7 +31,9 @@ function Header() {
           <button className="btn-jual">Jual</button>
         </div>
         <div className="header-container-btn-jual">
-          <button className="btn-jual">Login</button>
+          <Link to={"/login"}>
+            <button className="btn-jual">Login</button>
+          </Link>
         </div>
       </div>
     </div>
