@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/Form.css";
 
 const Forms = () => {
   const [formsData, setFormsData] = useState({
@@ -22,7 +23,7 @@ const Forms = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // nanti bisa diganti misal request API ke backend buat submit
+    // it can be changed to API call
     console.log("Submited");
 
     setFormsData({
@@ -32,35 +33,45 @@ const Forms = () => {
   };
 
   return (
-    <form action="" onSubmit={handleSubmit} className="forms">
-      <div className="form-element">
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          value={formsData.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-element">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          required
-          value={formsData.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div style={{ marginBottom: "1rem" }}>
-        <button type="submit" className="btn-jual">
-          Submit
-        </button>
-      </div>
-    </form>
+    <div className="form-container">
+      <form action="" onSubmit={handleSubmit} className="forms">
+        <label>Masuk Akun Anda</label>
+        <div className="form-element">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Masukan E-Mail anda"
+            required
+            value={formsData.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-element">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Masukan password anda"
+            required
+            value={formsData.password}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="button-wrapper">
+          <button type="submit" className="btn-jual">
+            Login
+          </button>
+          <button type="submit" className="btn-jual">
+            Daftar dengan E-Mail
+          </button>
+          <button type="submit" className="google-sign-in-button">
+            Login With Google
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
