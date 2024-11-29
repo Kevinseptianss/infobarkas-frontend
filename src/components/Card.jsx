@@ -10,13 +10,9 @@ function Card({ productId, productTitle, productPrice, productLocation }) {
     return randomImageUrl; // URL of the random image
   };
 
-  const handleClick = () => {
-    history.pushState(`/detail/${productId}`);
-  };
-
   return (
     <Link to={`/detail/${productId}`}>
-      <div className="card" onClick={handleClick}>
+      <div className="card">
         <img src={fetchRandomImage()} alt="Product" className="card-image" />
         <div className="card-content">
           <h2 className="card-title">{productTitle}</h2>
