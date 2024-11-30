@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Form.css";
+import { Link } from "react-router-dom";
 
 const Forms = () => {
   const [formsData, setFormsData] = useState({
@@ -63,9 +64,11 @@ const Forms = () => {
           <button type="submit" className="btn-jual">
             Login
           </button>
-          <button type="submit" className="btn-jual">
-            Daftar dengan E-Mail
-          </button>
+          <Link to={`/register`}>
+            <button type="submit" className="btn-jual">
+              Daftar dengan E-Mail
+            </button>
+          </Link>
           <button type="submit" className="google-sign-in-button">
             Login With Google
           </button>
