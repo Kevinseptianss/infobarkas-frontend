@@ -21,7 +21,7 @@ const ImageSlideshow = ({ images }) => {
       <div className="slideshow-container">
         <div className="slideshow">
           <img
-            src={images[currentIndex]}
+            src={"http://localhost:3000/images/"+images[currentIndex]}
             alt={`Slide ${currentIndex + 1}`}
             className="slide-image"
           />

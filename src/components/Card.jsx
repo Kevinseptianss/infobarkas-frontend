@@ -1,19 +1,13 @@
 /* eslint-disable react/prop-types */
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
-function Card({ productId, productTitle, productPrice, productLocation }) {
-  const fetchRandomImage = () => {
-    const randomImageUrl =
-      "https://picsum.photos/200/300?random=" +
-      Math.floor(Math.random() * 1000);
-    return randomImageUrl; // URL of the random image
-  };
+import "../styles/Card.css";
+function Card({ productId, productTitle, productPrice, productLocation, productImage }) {
 
   return (
     <Link to={`/detail/${productId}`}>
       <div className="card">
-        <img src={fetchRandomImage()} alt="Product" className="card-image" />
+        <img src={import.meta.env.VITE_API_URL + '/images/' + productImage} alt="Product" className="card-image" />
         <div className="card-content">
           <h2 className="card-title">{productTitle}</h2>
           <p className="card-price">{productPrice}</p>
