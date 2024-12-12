@@ -14,6 +14,8 @@ a {
   color: black;
 }
 
+
+
 .header {
   display: flex; /* Assuming you want a flex layout */
   align-items: center; /* Center items vertically */
@@ -65,11 +67,16 @@ a {
   background-color: #004aad;
   border: none;
   color: white;
+  padding: 10px;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 16px; /* Default font size */
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+  display: inline-block; /* Ensure the button respects width */
 }
 
 .search-icon {
@@ -85,7 +92,7 @@ a {
   width: 200px;
 }
 
-.dropdown-button {
+.dropdown-header-button {
   background-color: white; /* White background */
   border: 1px solid #ccc; /* Light border to match the search bar */
   padding: 10px;
@@ -95,7 +102,7 @@ a {
   transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
-.dropdown-content {
+.dropdown-header-content {
   display: none; /* Hidden by default */
   position: absolute;
   background-color: white; /* White background */
@@ -106,11 +113,11 @@ a {
   z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-header:hover .dropdown-header-content {
   display: block; /* Show the dropdown on hover */
 }
 
-.dropdown-content a {
+.dropdown-header-content a {
   color: black; /* Text color */
   padding: 12px 16px;
   text-decoration: none;
@@ -118,16 +125,16 @@ a {
   transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
-.dropdown-content a:hover {
+.dropdown-header-content a:hover {
   background-color: #f0f0f0; /* Soft grey color on hover */
 }
 
-.dropdown {
+.dropdown-header {
   position: relative;
   display: inline-block;
 }
 
-.dropdown-button {
+.dropdown-header-button {
   background-color: white; /* White background */
   border: 1px solid #ccc; /* Light border to match the search bar */
   padding: 10px;
@@ -137,11 +144,11 @@ a {
   transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
-.dropdown-button:hover {
+.dropdown-header-button:hover {
   background-color: #f9f9f9; /* Slightly darker white on hover */
 }
 
-.dropdown-content {
+.dropdown-header-content {
   display: none; /* Hidden by default */
   position: absolute;
   background-color: white; /* White background */
@@ -152,11 +159,11 @@ a {
   z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdown-header:hover .dropdown-header-content {
   display: block; /* Show the dropdown on hover */
 }
 
-.dropdown-content a {
+.dropdown-header-content a {
   color: black; /* Text color */
   padding: 12px 16px;
   text-decoration: none;
@@ -164,7 +171,7 @@ a {
   transition: background-color 0.3s; /* Smooth transition for hover */
 }
 
-.dropdown-content a:hover {
+.dropdown-header-content a:hover {
   background-color: #f0f0f0; /* Soft grey color on hover */
 }
 
@@ -178,54 +185,6 @@ a {
   text-align: center; /* Center the title */
   margin-bottom: 20px; /* Space below the title */
   font-size: 24px; /* Font size for the title */
-}
-
-.card-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.card {
-  border: 1px solid #ccc; /* Light border */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
-  overflow: hidden; /* Prevent overflow */
-  display: flex; /* Flex layout for card */
-  flex-direction: column;
-  margin-bottom: 20px; /* Space below the card */
-  max-width: 200px;
-}
-
-.card-image {
-  width: 200px; /* Fixed width for image */
-  height: 200px; /* Fixed height for image */
-  object-fit: cover; /* Cover the area without distortion */
-}
-
-.card-content {
-  padding: 10px; /* Padding inside the card */
-  display: flex; /* Flex layout for content */
-  flex-direction: column; /* Stack elements vertically */
-  justify-content: center; /* Center content */
-}
-
-.card-title {
-  font-size: 18px; /* Font size for the title */
-  margin: 0 0 10px; /* Space below the title */
-}
-
-.card-price {
-  font-size: 16px; /* Font size for the price */
-  color: green; /* Price color */
-  margin: 0 0 5px; /* Space below the price */
-}
-
-.card-location {
-  font-size: 14px; /* Font size for the location */
-  color: #555; /* Gray color for location */
 }
 
 .header-search {
@@ -341,10 +300,91 @@ a {
   height: 50px; /* Set a fixed height to make it square */
   border-radius: 50%; /* Make the image circular */
   object-fit: cover; /* Ensure the image covers the area without distortion */
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
+.placeholder-detail-image {
+  width: 50px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height to make it square */
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-weight: bold;
+  font-size: 8px;
+}
+
+select {
+  width: 100%; /* Full width */
+  padding: 10px; /* Padding for better touch targets */
+  margin: 10px 0; /* Margin for spacing */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  background-color: #fff; /* White background */
+  appearance: none; /* Remove default styling */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><polygon points="0,0 10,0 5,5" fill="%23333"/></svg>'); /* Custom dropdown arrow */
+  background-repeat: no-repeat; /* Prevent repeating */
+  background-position: right 10px center; /* Position the arrow */
+  background-size: 10px; /* Size of the arrow */
+}
+
+/* Styles for the select element on focus */
+select:focus {
+  border-color: #007bff; /* Change border color on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add shadow on focus */
+}
+
+.profile-header-menu {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  padding: 10px;
+  gap:10px;
+  justify-content: end;
+}
+
+.profile-header-menu svg {
+  width: 30px;
+  height: 30px;
+}
+
+.dropdown-profile {
+  position: absolute; /* Position it relative to the parent */
+  background-color: white; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Shadow */
+  z-index: 1000; /* Ensure it appears above other elements */
+  margin-top: 35px;
+}
+
+.dropdown-profile ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.dropdown-profile li {
+  padding: 10px; /* Padding for each item */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.dropdown-profile li:hover {
+  background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.detail-description p {
+  white-space: pre-wrap;
+} 
+
 @media (max-width: 425px) {
+  h1 {
+    font-size: 1.5em;
+  }
   .header {
     flex-direction: column; /* Stack header items vertically */
     align-items: flex-start; /* Align items to the start */
@@ -370,7 +410,7 @@ a {
     margin: 5px 0; /* Add margin for spacing */
   }
 
-  .dropdown {
+  .dropdown-header {
     width: 20%; /* Full width for dropdown */
     margin: 10px 0; /* Add margin for spacing */
   }
@@ -378,16 +418,6 @@ a {
   .dropdown-button {
     width: 100%; /* Full width for dropdown button */
   }
-
-  .card-container {
-    flex-direction: row; /* Stack cards vertically */
-    width: 100%; /* Full width for card container */
-  }
-
-  .card {
-    max-width: 165px;
-  }
-
   .title {
     font-size: 20px; /* Adjust font size for smaller screens */
   }

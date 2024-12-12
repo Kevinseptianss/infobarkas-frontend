@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "../styles/Form.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { asyncSetAuthUser } from "../states/isAuth/action";
 
 const Forms = () => {
+  const dispatch = useDispatch();
   const [formsData, setFormsData] = useState({
     email: "",
     password: "",
@@ -24,13 +27,7 @@ const Forms = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // it can be changed to API call
-    console.log("Submited");
-
-    setFormsData({
-      email: "",
-      password: "",
-    });
+    dispatch(asyncSetAuthUser(formsData));
   };
 
   return (

@@ -1,0 +1,88 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between cards */
+  justify-content: start; /* Center cards horizontally */
+  padding: 20px; /* Add padding around the container */
+}
+
+.card {
+  border: none; /* Remove border for a cleaner look */
+  border-radius: 12px; /* Slightly larger rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  display: flex; /* Flex layout for card */
+  flex-direction: column; /* Stack elements vertically */
+  margin-bottom: 20px; /* Space below the card */
+  max-width: 220px; /* Slightly wider card */
+  transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effects */
+  max-height: fit-content;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.card-image {
+  width: 100%; /* Full width for image */
+  height: 150px; /* Fixed height for image */
+  object-fit: cover; /* Cover the area without distortion */
+}
+
+.card-content {
+  padding: 15px; /* Increased padding for better spacing */
+  display: flex; /* Flex layout for content */
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Space out content */
+  flex-grow: 1; /* Allow content to grow and fill the card */
+}
+
+.card-title {
+  font-size: 15px; /* Increased font size for title */
+  height: 32px;;
+  font-weight: 600; /* Bold title for emphasis */
+  margin: 0 0 8px; /* Space below the title */
+  color: #333; /* Darker color for better readability */
+  overflow: hidden; /* Hide overflow */
+  display: -webkit-box; /* Use flexbox for multi-line truncation */
+  -webkit-box-orient: vertical; /* Set orientation */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.card-price {
+  font-size: 18px; /* Increased font size for price */
+  color: #28a745; /* Bootstrap green for price */
+  margin: 0 0 4px; /* Space below the price */
+}
+
+.card-location {
+  font-size: 14px; /* Font size for the location */
+  color: #777; /* Lighter gray for location */
+  margin: 0;
+}
+
+@media (max-width: 425px) {
+  .card-container {
+    flex-direction: row; /* Stack cards vertically */
+    width: 100%; /* Full width for card container */
+  }
+
+  .card {
+    max-width: 162px;
+  }
+
+  .card-title {
+    font-size: 12px;
+    height: 28px;
+  }
+
+  .card-price {
+    font-size: 10px;
+  }
+  .card-location {
+    font-size: 10px;
+  }
+}

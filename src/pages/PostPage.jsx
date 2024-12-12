@@ -1,7 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import imageLogo from "../assets/imageslogo.jpeg";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import api from "../utils/api";
 function PostPage() {
   const [imageSrc, setImageSrc] = useState([]);
+  const [formData, setFormData] = useState({
+    title: "",
+    price: "",
+    description: "",
+    category: "",
+  });
+  const { authUser = null } = useSelector((state) => state);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!authUser) {
+      navigate("/login");
+    }
+  }, [authUser, navigate]);
+
+  const handleWithoutImage = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    alert("Mohon input gambar minimal 1 aja"); // Show alert if no images are selected
+    return; // Exit the function
+  };
 
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files); // Get all selected files
@@ -18,17 +40,36 @@ function PostPage() {
       reader.readAsDataURL(file); // Read the file as a data URL
     });
   };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+    try {
+      await api.postAds(formData, imageSrc); // Call the API to post the ad
+      navigate("/");
+    } catch (error) {
+      alert("Failed to post ad. Please try again." + error); // Handle error
+    }
+  };
+
   if (imageSrc.length > 0) {
     let placeholderCount = 0;
     if (imageSrc.length < 6) {
-        placeholderCount = 5
+      placeholderCount = 5;
     } else {
-        placeholderCount = Math.max(0, 5 - (imageSrc.length - 5));
+      placeholderCount = Math.max(0, 5 - (imageSrc.length - 5));
     }
-    
+
     return (
       <div className="form-container">
-        <form className="forms post">
+        <form className="forms post" onSubmit={handleSubmit}>
           <div className="label-title">
             <label>Pasang Iklan Jualan</label>
           </div>
@@ -68,16 +109,35 @@ function PostPage() {
           <input
             type="file"
             name="image"
-            accept=".jpg, .png, .jpeg"
+            accept="image/*"
             multiple
             onChange={handleImageChange}
           />
           <label>Judul Iklan</label>
-          <input type="text" name="nama" />
+          <input type="text" name="title" onChange={handleInputChange} />
           <label>Harga Barang</label>
-          <input type="number" name="harga" />
+          <input type="number" name="price" onChange={handleInputChange} />
+          <label>Kategori</label>
+          <select name="category" onChange={handleInputChange}>
+            <option value="">Pilih Kategori</option>
+            <option value="mobil">Mobil Bekas</option>
+            <option value="motor">Motor Bekas</option>
+            <option value="properti">Properti</option>
+            <option value="hanphone">Handphone</option>
+            <option value="komputer">Komputer</option>
+            <option value="elektronik">Elektronik Lainnya</option>
+            <option value="hobiolahraga">Hobi & Olahraga</option>
+            <option value="pribadi">Keperluan Pribadi</option>
+            <option value="bayi">Perlengkapan Bayi</option>
+            <option value="kantor">Perlengkapan Kantor</option>
+          </select>
           <label>Deskripsi Barang</label>
-          <textarea className="from-textarea" name="deskripsi" />
+          <textarea
+            className="from-textarea"
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+          />
           <button type="submit" className="btn-jual">
             Post
           </button>
@@ -88,7 +148,7 @@ function PostPage() {
 
   return (
     <div className="form-container">
-      <form className="forms post">
+      <form className="forms post" onSubmit={handleWithoutImage}>
         <div className="label-title">
           <label>Pasang Iklan Jualan</label>
         </div>
@@ -120,6 +180,20 @@ function PostPage() {
         <input type="text" name="nama" />
         <label>Harga Barang</label>
         <input type="number" name="harga" />
+        <label>Kategori</label>
+        <select name="kategori" onChange={handleInputChange}>
+          <option value="">Pilih Kategori</option>
+          <option value="mobil">Mobil Bekas</option>
+          <option value="motor">Motor Bekas</option>
+          <option value="properti">Properti</option>
+          <option value="hanphone">Handphone</option>
+          <option value="komputer">Komputer</option>
+          <option value="elektronik">Elektronik Lainnya</option>
+          <option value="hobiolahraga">Hobi & Olahraga</option>
+          <option value="pribadi">Keperluan Pribadi</option>
+          <option value="bayi">Perlengkapan Bayi</option>
+          <option value="kantor">Perlengkapan Kantor</option>
+        </select>
         <label>Deskripsi Barang</label>
         <textarea className="from-textarea" name="deskripsi" />
         <button type="submit" className="btn-jual">

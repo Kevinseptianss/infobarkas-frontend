@@ -1,0 +1,39 @@
+/* ProfilePage.css */
+
+.container-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+.profile-header-menu {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end; /* Aligns the profile image to the right */
+    margin-bottom: 20px;
+}
+
+.ads-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between cards */
+    width: 100%;
+    max-width: 1200px; /* Max width for larger screens */
+    align-items: baseline;
+}
+
+.loading {
+    font-size: 24px;
+    color: #007bff;
+    margin-top: 50px;
+}
+
+.no-ads-message {
+    font-size: 20px;
+    color: #888;
+    text-align: center;
+    margin-top: 50px;
+}

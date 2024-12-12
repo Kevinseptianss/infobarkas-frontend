@@ -1,0 +1,138 @@
+/* CardAds.css */
+
+.ads-card {
+  display: flex;
+  flex-direction: column; /* Stack the image and details vertically */
+  border: 1px solid #e0e0e0; /* Light border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  overflow: hidden; /* Prevent overflow */
+  margin-bottom: 20px; /* Space below the card */
+  transition: transform 0.2s; /* Smooth hover effect */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.ads-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.ads-card-contain {
+  display: flex; /* Flex layout for image and details */
+  padding: 20px; /* Padding around the content */
+}
+
+.ads-left {
+  flex: 0 0 150px; /* Fixed width for the image */
+}
+
+.ads-left img {
+  width: 100%; /* Full width of the container */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 10px; /* Rounded corners */
+}
+
+.ads-right {
+  flex: 1; /* Take remaining space */
+  padding-left: 20px; /* Padding around the content */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Space between elements */
+}
+
+.ads-detail h2 {
+  margin: 0;
+  font-size: 1.2rem; /* Larger title */
+  color: #333; /* Darker text color */
+}
+
+.ads-price {
+  font-size: 0.75rem; /* Price size color: #007bff; /* Blue color for price */
+  margin: 10px 0; /* Margin for spacing */
+}
+
+.ads-info {
+  font-size: 0.875rem; /* Smaller info text */
+  color: #666; /* Lighter text color */
+}
+
+.ads-button {
+  display: flex;
+  justify-content: space-between; /* Space buttons evenly */
+  margin: 10px; /* Space above buttons */
+  transition: max-height 0.3s ease, opacity 0.3s ease; /* Smooth transition for sliding effect */
+  overflow: hidden; /* Prevent overflow when hidden */
+}
+
+.ads-button.hidden {
+  max-height: 0; /* Collapse height when hidden */
+  opacity: 0; /* Fade out */
+  display: none;
+}
+
+.ads-button.visible {
+  max-height: 100px; /* Set a max height for visible state */
+  opacity: 1; /* Fully visible */
+}
+
+.ads-button button {
+  width: 100px; /* Make buttons take equal space */
+  margin: 0 5px; /* Margin between buttons */
+  padding: 10px; /* Padding inside buttons */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #007bff; /* Primary button color */
+  color: white; /* Text color */
+  font-size: 1rem; /* Button text size */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+}
+
+.ads-button button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.btn-delete {
+  background-color: #d50000; /* Red color for delete button */
+}
+
+.btn-delete:hover {
+  background-color: #b00000; /* Darker red on hover */
+}
+
+@media (max-width: 425px) {
+  .ads-left {
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%; /* Ensure the container takes full width */
+    height: 100%; /* Ensure the container takes full height */
+  }
+
+  .ads-left img {
+    width: 100%; /* Make the image fill the container width */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 150px; /* Optional: Set a max height to prevent overflow */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  }
+
+  .ads-card-contain {
+    padding: 10px;
+  }
+
+  .ads-detail h2 {
+    font-size: 1.25rem; /* Smaller title on mobile */
+  }
+
+  .ads-price {
+    font-size: 1rem; /* Smaller price on mobile */
+  }
+
+  .ads-info {
+    font-size: 0.75rem; /* Smaller info text on mobile */
+  }
+
+  .ads-button button {
+    font-size: 0.7rem; /* Smaller button text on mobile */
+  }
+}
