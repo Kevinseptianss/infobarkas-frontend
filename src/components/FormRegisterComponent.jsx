@@ -17,7 +17,6 @@ function FormRegisterComponent({ handleSubmit }) {
   };
 
   const handleCitySelect = (city) => {
-    console.log("Selected city:", city);
     setFormData({ ...formData, location: city.label  });
   };
 

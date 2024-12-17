@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const api = (() => {
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   async function getAllAds() {
     const response = await fetch(`${BASE_URL}/ads`);
@@ -294,12 +294,15 @@ const api = (() => {
     return ads;
   }
 
-  async function editProfile({ name, phone }) {
+  async function editProfile({ name, phone, location }) {
     try {
       // Prepare the request body only with provided fields
       const requestBody = {};
       if (name) requestBody.name = name;
       if (phone) requestBody.phone = phone;
+      if (location) requestBody.location = location;
+
+      console.log(requestBody);
 
       const response = await fetch(`${BASE_URL}/users/me`, {
         method: "PUT",

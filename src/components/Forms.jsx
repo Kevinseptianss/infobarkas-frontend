@@ -1,72 +1,69 @@
-import { useState } from "react";
 import "../styles/Form.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { asyncSetAuthUser } from "../states/isAuth/action";
+import {
+  setAuthUserActionCreator,
+} from "../states/isAuth/action";
+import {
+  auth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "../utils/firebase-config";
+import api from "../utils/api";
 
 const Forms = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [formsData, setFormsData] = useState({
-    email: "",
-    password: "",
-  });
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
 
-  /**
-   * For handling change on form
-   * @param {*} event any event triggered by user
-   */
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormsData({ ...formsData, [name]: value });
+    try {
+      // Sign in with Google
+      const result = await signInWithPopup(auth, provider);
+      const idToken = await result.user.getIdToken();
+
+      // Send ID token to the backend
+      const response = await fetch(import.meta.env.VITE_API_URL+ "/auth/google", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idToken }),
+      });
+
+      const responseJson = await response.json();
+
+      const { message } = responseJson;
+
+      const {
+        data: { accessToken },
+      } = responseJson;
+
+      if (response.ok) {
+        api.putAccessToken(accessToken);
+        const authUser = await api.getOwnProfile();
+        console.log(authUser);
+        dispatch(setAuthUserActionCreator(authUser));
+        navigate("/");
+        window.location.reload();
+        alert("Sign-In Successful");
+      } else {
+        alert(message);
+      }
+    } catch (error) {
+      console.error("Error during Google Sign-In:", error);
+      alert("Google Sign-In failed. Please try again.");
+    }
   };
 
-  /**
-   * For handling submit form
-   * @param {*} e any event triggered by user
-   */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(asyncSetAuthUser(formsData));
-  };
 
   return (
     <div className="form-container">
-      <form action="" onSubmit={handleSubmit} className="forms">
+      <form action="" className="forms">
         <label>Masuk Akun Anda</label>
-        <div className="form-element">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Masukan E-Mail anda"
-            required
-            value={formsData.email}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-element">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Masukan password anda"
-            required
-            value={formsData.password}
-            onChange={handleChange}
-          />
-        </div>
 
         <div className="button-wrapper">
-          <button type="submit" className="btn-jual">
-            Login
-          </button>
-          <Link to={`/register`}>
-            <button type="submit" className="btn-jual">
-              Daftar dengan E-Mail
-            </button>
-          </Link>
-          <button type="submit" className="google-sign-in-button">
+          <button type="button" onClick={handleGoogleSignIn} className="google-sign-in-button">
             Login With Google
           </button>
         </div>

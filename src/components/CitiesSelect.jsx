@@ -57,8 +57,8 @@ const cities = [
     // Add more cities as needed
   ];
 
-const CitySelect = ({ onCitySelect }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const CitySelect = ({ onCitySelect, value }) => {
+  const [searchTerm, setSearchTerm] = useState(value || '');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
 
@@ -75,10 +75,10 @@ const CitySelect = ({ onCitySelect }) => {
 
   return (
     <div className="form-group">
-      <label>Pilih Kota</label>
+      <label>Kota Anda</label>
       <div className="custom-select" onClick={() => setIsOpen(!isOpen)}>
         <div className="selected-value">
-          {selectedCity ? selectedCity.label : 'Pilih Kota'}
+          {selectedCity ? selectedCity.label : value || 'Pilih Kota'}
         </div>
         {isOpen && (
           <div className="dropdown">
