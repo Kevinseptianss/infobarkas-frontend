@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import "../styles/ProfileEdit.css";
 import api from "../utils/api";
+import CitySelect from "../components/CitiesSelect";
 
 function ProfileEditPage() {
   const authUser = useSelector((state) => state.authUser);
@@ -9,13 +10,19 @@ function ProfileEditPage() {
   const [formsData, setFormsData] = useState({
     name: "",
     phone: "",
+    location: "",
   });
+
+  const handleCitySelect = (city) => {
+    setFormsData({ ...formsData, location: city.label });
+  };
 
   useEffect(() => {
     if (authUser) {
       setFormsData({
         name: authUser.name || "",
         phone: authUser.phone || "",
+        location: authUser.location || "",
       });
     }
   }, [authUser]);
@@ -76,7 +83,7 @@ function ProfileEditPage() {
         <label htmlFor="name">Nama</label>
         <input
           id="name"
-          value={formsData.name}
+          value={formsData?.name}
           name="name"
           type="text"
           onChange={handleChange}
@@ -95,12 +102,13 @@ function ProfileEditPage() {
         <label htmlFor="phone">Nomor Handphone</label>
         <input
           id="phone"
-          value={formsData.phone}
+          value={formsData?.phone}
           name="phone"
           type="number"
           onChange={handleChange}
           placeholder="Enter your phone number"
         />
+        <CitySelect onCitySelect={handleCitySelect} value={authUser?.location}/>
 
         <button type="submit" className="submit-button">
           Save Changes
