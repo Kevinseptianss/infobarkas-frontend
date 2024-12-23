@@ -42,7 +42,6 @@ const Forms = () => {
       if (response.ok) {
         api.putAccessToken(accessToken);
         const authUser = await api.getOwnProfile();
-        console.log(authUser);
         dispatch(setAuthUserActionCreator(authUser));
         navigate("/");
         window.location.reload();

@@ -1,13 +1,27 @@
-import { useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useState } from "react";
 import api from "../utils/api";
 import Card from "./Card";
 import { useSelector, useDispatch } from "react-redux";
 import { asyncGetAd, asyncGetAdSearch } from "../states/ads/action";
 import { useParams } from "react-router-dom";
 
-function Body() {
+function Body({ title }) {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  let { id } = useParams();
+  try {
+    const detail = atob(id); // Attempt to decode the Base64 string
+    const parsedDetail = JSON.parse(detail); // Assuming the decoded string is JSON
+  
+    // Check if the parsed detail has the owner_id property
+    if (parsedDetail && parsedDetail.id) {
+      id = parsedDetail.id; // Assign owner_id to id
+    }
+  } catch {
+    null
+  }
+
+  const [headerTitle, setHeaderTitle] = useState("");
 
   // Use useSelector to get ads from the Redux state
   const ads = useSelector((state) => state.ads); // Ensure this path is correct
@@ -16,12 +30,8 @@ function Body() {
   const adsList = Array.isArray(ads) ? ads : [];
 
   // Fetch ads when the component mounts
-  // useEffect(() => {
-  //   dispatch(asyncGetAd());
-  // }, [dispatch]);
-
-  // Fetch ads when the component mounts
   useEffect(() => {
+    setHeaderTitle(title);
     const fetchAds = async () => {
       id ? (dispatch(asyncGetAdSearch(id))) : dispatch(asyncGetAd());
     };
@@ -31,7 +41,7 @@ function Body() {
 
   return (
     <div className="body-container">
-      <h1 className="title">Iklan Terbaru</h1>
+      <h1 className="title">{headerTitle}</h1>
       <div className="card-container">
         {adsList.length > 0 ? ( // Check if adsList is not empty
           adsList.map((product, index) => (

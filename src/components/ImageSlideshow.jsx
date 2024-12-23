@@ -21,7 +21,7 @@ const ImageSlideshow = ({ images }) => {
       <div className="slideshow-container">
         <div className="slideshow">
           <img
-            src={"http://localhost:3000/images/"+images[currentIndex]}
+            src={import.meta.env.VITE_API_URL + "/images/"+images[currentIndex]}
             alt={`Slide ${currentIndex + 1}`}
             className="slide-image"
           />

@@ -68,10 +68,12 @@
   .card-container {
     flex-direction: row; /* Stack cards vertically */
     width: 100%; /* Full width for card container */
+    padding: 0;
   }
 
   .card {
-    max-width: 162px;
+    max-width: 180px;
+    flex-grow: 0.5;
   }
 
   .card-title {
@@ -84,5 +86,53 @@
   }
   .card-location {
     font-size: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .card {
+    max-width: 175px;
+  }
+}
+
+@media (max-width: 409px) {
+  .card {
+    max-width: 170px;
+  }
+}
+
+@media (max-width: 399px) {
+  .card {
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 390px) {
+  .card {
+    max-width: 155px;
+  }
+}
+
+@media (max-width: 370px) {
+  .card {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 360px) {
+    .card {
+      max-width: 140px;
+    }
+}
+
+@media (max-width: 340px) {
+  .card {
+    max-width: 130px;
+  }
+}
+
+@media (max-width: 319px) {
+  .card {
+    max-width: 120px;
   }
 }

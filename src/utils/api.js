@@ -24,7 +24,6 @@ const api = (() => {
     const response = await fetch(`${BASE_URL}/ads/search?search=${search}`);
 
     const responseJson = await response.json();
-    console.log(responseJson);
 
     const { status, message } = responseJson;
 
@@ -162,7 +161,6 @@ const api = (() => {
   async function postAds(data, images) {
     // Create a FormData object
     const formData = new FormData();
-    console.log(data);
 
     // Append the ad details to the FormData object
     formData.append("data", JSON.stringify(data));
@@ -180,6 +178,7 @@ const api = (() => {
     });
 
     try {
+      console.log(formData);
       // Send the POST request to the backend
       const response = await fetch(`${BASE_URL}/ads`, {
         method: "POST",
@@ -208,7 +207,6 @@ const api = (() => {
   async function editAds(data, images) {
     // Create a FormData object
     const formData = new FormData();
-    console.log(data);
 
     // Append the ad details to the FormData object
     formData.append("data", JSON.stringify(data));
@@ -301,8 +299,6 @@ const api = (() => {
       if (name) requestBody.name = name;
       if (phone) requestBody.phone = phone;
       if (location) requestBody.location = location;
-
-      console.log(requestBody);
 
       const response = await fetch(`${BASE_URL}/users/me`, {
         method: "PUT",

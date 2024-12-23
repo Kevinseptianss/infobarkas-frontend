@@ -79,6 +79,45 @@ a {
   display: inline-block; /* Ensure the button respects width */
 }
 
+.btn-jual:disabled {
+  background-color: #a9a9a9; /* Greyed out color */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+  color: #ffffff; /* Keep text color white for contrast */
+}
+
+.btn-wa {
+  width: 120px;
+  height: 40px;
+  background-color: #128C7E; /* WhatsApp green */
+  border: none;
+  color: white;
+  padding: 10px;
+  border-radius: 20px; /* More rounded corners */
+  font-size: 16px; /* Default font size */
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
+  display: inline-flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.btn-wa:hover {
+  background-color: #128C7E; /* Darker green for hover effect */
+}
+
+.btn-wa img {
+  width: 20px; /* Adjust icon size */
+  height: 20px; /* Adjust icon size */
+  margin-right: 5px; /* Space between icon and text */
+}
+
+
+
 .search-icon {
   position: absolute;
   left: 10px;
@@ -290,6 +329,7 @@ a {
 
 .detail-toko h2 {
   margin: 0;
+  font-size: 1em;
 }
 
 .detail-toko img {
@@ -383,7 +423,10 @@ select:focus {
 
 @media (max-width: 425px) {
   h1 {
-    font-size: 1.5em;
+    font-size: 1.3em;
+  }
+  .detail-content-title p {
+    font-size: 0.9em;
   }
   .header {
     flex-direction: column; /* Stack header items vertically */

@@ -29,7 +29,7 @@ function EditPage() {
             category: response.category,
         }
         setFormData(data); // Assuming the response data contains the product
-        const imageUrls = response.images.map(src => "http://localhost:3000/images/" + src);
+        const imageUrls = response.images.map(src => import.meta.env.VITE_API_URL + "/images/" + src);
         setImageSrc(imageUrls);
     } catch (error) {
         setError("Product not found" + error); // Handle error

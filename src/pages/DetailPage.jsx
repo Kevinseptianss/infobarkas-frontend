@@ -1,14 +1,15 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ImageSlideshow from "../components/ImageSlideshow";
-import { formatToRupiah } from "../utils/data-local";
 import { useEffect, useState } from "react";
 import api from "../utils/api";
+import ButtonWA from "../components/ButtonWA";
 
 function DetailPage() {
   const { id: productId } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [details, setDetails] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -18,7 +19,12 @@ function DetailPage() {
           setError("Product not found");
         } else {
           setProduct(response);
-          console.log(response);
+          const detail = {
+            name: response.name,
+            id: response.owner_id,
+          };
+          console.log()
+          setDetails(btoa(JSON.stringify(detail)));
         }
       } catch (error) {
         setError("Failed to fetch product: " + error.message);
@@ -52,8 +58,8 @@ function DetailPage() {
             <h1>{product.title}</h1>
           </div>
           <div className="detail-content-price">
-            <h1>{formatToRupiah(product.price)}</h1>
-            <button className="btn-jual">Kirim Pesan</button>
+            <h1>{api.formatToRupiah(product.price)}</h1>
+            <ButtonWA phoneNumber={product.phone} productName={product.title} productId={product.id} />
           </div>
         </div>
 
@@ -75,7 +81,7 @@ function DetailPage() {
             ) : (
               <div className="placeholder-detail-image">No Image</div>
             )}
-            <h2>{product.name} ❯</h2>
+            <Link to={"/profile/" + details}><h2>{product.name} ❯</h2></Link>
           </div>
         </div>
       </div>
