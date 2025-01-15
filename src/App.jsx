@@ -9,6 +9,7 @@ import PostPage from "./pages/PostPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditPage from "./pages/EditPage";
 import ProfileEditPage from "./pages/ProfileEditPage";
+import MyProfilePage from "./pages/MyProfilePage";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/profile/edit-ads/:id" element={<EditPage />} />
           <Route path="/profile/me" element={<ProfileEditPage />} />
+          <Route path="/profile/:id" element={<MyProfilePage />} />
         </Routes>
       </main>
     </>

@@ -20,8 +20,6 @@ function FormRegisterPage() {
         navigate('/login');
       }
     }
-    console.log("Form submitted with data:", formData);
-    // You can also perform further actions here, like sending the data to an API
   };
 
   return (

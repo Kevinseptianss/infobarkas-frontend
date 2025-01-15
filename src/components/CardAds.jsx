@@ -38,7 +38,7 @@ function CardAds({ ad, isExpanded, onToggle }) {
       <div className="ads-card-contain">
         <div className="ads-left">
           <img
-            src={"http://localhost:3000/images/" + ad.first_image}
+            src={import.meta.env.VITE_API_URL + "/images/" + ad.first_image}
             alt={ad.title}
           />
         </div>

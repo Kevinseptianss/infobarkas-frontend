@@ -11,6 +11,8 @@ function PostPage() {
     description: "",
     category: "",
   });
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [buttonText, setButtonText] = useState("Post");
   const { authUser = null } = useSelector((state) => state);
   const navigate = useNavigate();
   useEffect(() => {
@@ -28,13 +30,22 @@ function PostPage() {
   const handleImageChange = (event) => {
     const files = Array.from(event.target.files); // Get all selected files
     const newImageSrcs = []; // Array to hold the new image sources
+  
+    // Clear the previous image sources
     setImageSrc([]);
+  
+    // If no files are selected, return early
+    if (files.length === 0) {
+      return;
+    }
+  
     files.forEach((file) => {
       const reader = new FileReader(); // Create a FileReader for each file
       reader.onloadend = () => {
         newImageSrcs.push(reader.result); // Push the result to the new array
+        // Update state once all files are read
         if (newImageSrcs.length === files.length) {
-          setImageSrc((prevSrcs) => [...prevSrcs, ...newImageSrcs]); // Update state once all files are read
+          setImageSrc((prevSrcs) => [...prevSrcs, ...newImageSrcs]);
         }
       };
       reader.readAsDataURL(file); // Read the file as a data URL
@@ -51,11 +62,35 @@ function PostPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent the default form submission
-    try {
-      await api.postAds(formData, imageSrc); // Call the API to post the ad
-      navigate("/");
-    } catch (error) {
-      alert("Failed to post ad. Please try again." + error); // Handle error
+    let isError = false;
+
+    if (formData.title.length < 5) {
+      alert("Minimal 5 karakter!");
+      isError = true;
+    }
+    if (formData.description.length < 10) {
+      alert("Minimal 10 karakter!");
+      isError = true;
+    }
+    if (!formData.price) {
+      alert("Masukan harga barang!");
+      isError = true;
+    }
+    if (!formData.category) {
+      alert("Pilih kategori!");
+      isError = true;
+    }
+    if (!isError) {
+      setButtonText("Sedang di upload mohon tunggu");
+      setIsButtonDisabled(true);
+      try {
+        await api.postAds(formData, imageSrc); // Call the API to post the ad
+        navigate("/");
+      } catch (error) {
+        alert("Failed to post ad. Please try again." + error); // Handle error
+        setButtonText("Post");
+        setIsButtonDisabled(false);
+      }
     }
   };
 
@@ -138,8 +173,8 @@ function PostPage() {
             value={formData.description}
             onChange={handleInputChange}
           />
-          <button type="submit" className="btn-jual">
-            Post
+          <button type="submit" className="btn-jual" style={{ marginTop: '20px' }} disabled={isButtonDisabled}>
+            {buttonText}
           </button>
         </form>
       </div>
@@ -196,10 +231,10 @@ function PostPage() {
         </select>
         <label>Deskripsi Barang</label>
         <textarea className="from-textarea" name="deskripsi" />
-        <button type="submit" className="btn-jual">
-          Post
+        <button className="btn-jual" style={{ marginTop: '20px' }} disabled={isButtonDisabled}>
+            {buttonText}
         </button>
-      </form>
+    </form>
     </div>
   );
 }
